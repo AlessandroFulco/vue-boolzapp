@@ -132,10 +132,12 @@ body {
 }
 
 /* regole sezione chat */
+/* #chat {
+    overflow-y: scroll;
+} */
 ul {
     list-style-type: none;
 }
-
 .chat-content{
     display: flex;
     align-items: center;
@@ -157,3 +159,19 @@ ul {
     justify-content: space-between;
     align-items: center;
 }
+
+/* regole container message col-dx */
+#container-message{
+    padding: 20px;
+}
+.message{
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.message.user{
+    background-color: #d5f9ba;
+}
+
+    

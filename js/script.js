@@ -8,12 +8,12 @@ nome e immagine di ogni contatto */
 
 
 const boolApp = new Vue({
-    el : '#chat',
+    el : '#main-container',
     data : {
         contacts: [
             {
                 name: 'Michele',
-                avatar: 'img/Michle.png',
+                avatar: 'img/Michele.png',
                 visible: true,
                 messages: [
                     {

@@ -63,14 +63,14 @@
                     <!-- lista chat -->
                     <div id="chat">
                         <ul>
-                            <li class="chat-content">
+                            <li v-for="(chat, i) in contacts" :key="i" class="chat-content">
                                 <div id="profile">
                                     <!-- img profile -->
-                                    <img src="img/Michele.png" alt="foto profilo michele">
+                                    <img :src="chat.avatar" :alt="chat.name">
                                 </div>
                                 <div id="last_message_time">
                                     <div>
-                                        <h3>Michele</h3>
+                                        <h3>{{chat.name}}</h3>
                                         <span>Ultimo messaggio inviato</span>
                                     </div>
                                     <div id="chat-time">
@@ -109,6 +109,14 @@
                         </div>
                     </section>
                 </header>
+
+                <main>
+                    <div id="container-message">
+                        <span class="message user">
+                            ciao
+                        </span>
+                    </div>
+                </main>
             </section>
 
         </div>
