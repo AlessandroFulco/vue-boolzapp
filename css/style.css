@@ -1,0 +1,159 @@
+/*
+Milestone 1
+● Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e
+dall’interlocutore (bianco) assegnando due classi CSS diverse
+● Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare
+nome e immagine di ogni contatto */
+
+
+/* regole generali */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: arial, helvetica, sans-serif;
+}
+/* regole container di sfondo */
+#main-container {
+    background-color: #dadbd4;
+    height: 100vh;
+    width: 100%;
+}
+/* fascia superiore */
+#top-band {
+    background-color: #009688;
+    height: 120px;
+    width: 100%;
+}
+
+/* regiole sez container-app */
+#container-app {
+    width: 70%;
+    height: 90vh;
+    margin: -100px auto;
+    display: flex;
+    /* debug */
+    background-color: red;
+}
+#col-sx{
+    width: 40%;
+    background-color: #fff;
+}
+#col-dx{
+    width: 60%;
+    background-color: lightcoral;
+}
+#col-sx header, #col-dx header {
+    background-color: #eaeaea;
+}
+#open-chat{
+    border-left: 2px solid #ccc;
+}
+#user, #open-chat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+#user .img-name, #open-chat .img-name {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+#user .img-name img, #open-chat .img-name img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.button-sez i {
+    font-size: 23px;
+    color: #b1b1b1;
+    margin-right: 8px;
+}
+
+/* regole main col-sx */
+/* notification */
+#notification {
+    display: flex;
+    align-items: center;
+    padding: 15px 0 15px 15px;
+    background-color: #8edafc;
+}
+#notification a {
+    color: #5a7e8f;
+    font-size: 14px;
+}
+#bells {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #fff;
+}
+#bells i {
+    font-size: 20px;
+    color: #8edafc;
+}
+/* search bar */
+#search {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+#search #icon-search, #search #sez-input input {
+    background-color: #fff;
+    height: 40px;
+    border: 1px solid #ccc;
+}
+#search #icon-search {
+    width: 20%;
+    display: flex;
+    border-right: none;
+    justify-content: center;
+    align-items: center;
+}
+#search #sez-input{
+    width: 80%;
+}
+#search #sez-input input {
+    width: 100%;
+    font-size: 18px;
+}
+#search #sez-input input:focus {
+    border: none;
+}
+
+/* regole sezione chat */
+ul {
+    list-style-type: none;
+}
+
+.chat-content{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.chat-content div img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+#profile{
+    width: 15%;
+    text-align: center;
+    margin-right: 10px;
+}
+#last_message_time {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
