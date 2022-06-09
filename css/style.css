@@ -6,172 +6,243 @@ dall’interlocutore (bianco) assegnando due classi CSS diverse
 nome e immagine di ogni contatto */
 
 
-/* regole generali */
-* {
+/* Scrollbar */
+*::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(233, 235, 235);
+    border-radius: 20px;
+    border: 2px solid rgb(177, 177, 177);
+  }
+
+/* General */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    font-family: arial, helvetica, sans-serif;
-}
-/* regole container di sfondo */
-#main-container {
-    background-color: #dadbd4;
+
+#background-app{
+    font-family: 'Roboto', sans-serif;
+    /* background-image: url("img/bg.png");
+    width: 100%;
     height: 100vh;
-    width: 100%;
-}
-/* fascia superiore */
-#top-band {
-    background-color: #009688;
-    height: 120px;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 100; */
 }
 
-/* regiole sez container-app */
-#container-app {
-    width: 70%;
-    height: 90vh;
-    margin: -100px auto;
+h4{
+    font-weight: 400;
+}
+
+#app{
     display: flex;
-    /* debug */
-    background-color: red;
+    flex-wrap: wrap;
+    min-height: 100vh;
 }
-#col-sx{
-    width: 40%;
-    background-color: #fff;
+
+/* style contact list */
+aside {
+    width: 30%;
+    background-color: white;
+    max-height: 100vh;
 }
-#col-dx{
-    width: 60%;
-    background-color: lightcoral;
+
+#contact-list {
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
 }
-#col-sx header, #col-dx header {
-    background-color: #eaeaea;
+
+#left-contact{
+    max-width: 100vh;
+    min-width: 100%;
 }
-#open-chat{
-    border-left: 2px solid #ccc;
-}
-#user, #open-chat {
+
+.top-contact{
+    height: 80px;
+    background-color: rgb(234, 234, 234);
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding-right: 10px;
-}
-#user .img-name, #open-chat .img-name {
-    height: 70px;
-    display: flex;
     align-items: center;
+}
+
+.icon-avatar img{
+    width: 70px;
+    border-radius: 50%;
+}
+
+.icon-avatar {
+    /* display: flex;
+    align-items: center; */
     padding-left: 10px;
 }
-#user .img-name img, #open-chat .img-name img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-.button-sez i {
-    font-size: 23px;
-    color: #b1b1b1;
-    margin-right: 8px;
+
+.text-avatar{
+    float: right;
+    padding-top: 20px;
+    padding-left: 10px;
 }
 
-/* regole main col-sx */
-/* notification */
-#notification {
-    display: flex;
-    align-items: center;
-    padding: 15px 0 15px 15px;
-    background-color: #8edafc;
-}
-#notification a {
-    color: #5a7e8f;
-    font-size: 14px;
-}
-#bells {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #fff;
-}
-#bells i {
+/* style icon menu coctact */
+.option-icon-contact .fas {
+    color: rgb(177, 177, 177);
     font-size: 20px;
-    color: #8edafc;
-}
-/* search bar */
-#search {
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f9f9f9;
-}
-#search #icon-search, #search #sez-input input {
-    background-color: #fff;
-    height: 40px;
-    border: 1px solid #ccc;
-}
-#search #icon-search {
-    width: 20%;
-    display: flex;
-    border-right: none;
-    justify-content: center;
-    align-items: center;
-}
-#search #sez-input{
-    width: 80%;
-}
-#search #sez-input input {
-    width: 100%;
-    font-size: 18px;
-}
-#search #sez-input input:focus {
-    border: none;
-}
-
-/* regole sezione chat */
-/* #chat {
-    overflow-y: scroll;
-} */
-ul {
-    list-style-type: none;
-}
-.chat-content{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-.chat-content div img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-}
-#profile{
-    width: 15%;
-    text-align: center;
     margin-right: 10px;
 }
-#last_message_time {
-    width: 85%;
+
+#alert-notifications{
+    height: 80px;
+    background-color: rgb(142, 218, 252);
+    display: flex;
+    align-items: center;
+}
+
+#alert-notifications .fas{
+    font-size: 25px;
+    color: rgb(142, 218, 252);
+}
+
+#icon-bell {
+    border: 1px solid white;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 10px
+}
+
+#text-alert a{
+    font-size: 15px;
+    color: rgb(79, 116, 133)
+}
+
+#search-contact{
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+#search-contact input {
+     width: 90%;
+    height: 30px;
+    border: 1px solid lightgray;
+}
+
+.single-contact{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.single-contact:hover{
+    background-color: rgb(233, 235, 235);
+}
+
+/* display none with vueJS */
+.contacts-none{
+    display: none;
+}
+
+/* add this class with vue js */
+.active-chat{
+    background-color: rgb(233, 235, 235);
+}
+
+.little-font-gray{
+    font-size: 10px;
+    color: gray;
+    margin-right: 10px;
+}
+
+/* chat style */
+main {
+    width: calc(100% - 30%);
+    position: relative;
+}
+
+.chat-top{
+    border-left: 1px solid lightgrey;
+    padding-left: 10px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+#chat{
+    background-image: url("../img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: calc(100vh - 70px);
+    padding-top: 100px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    width: 100%;
+    height: 70px;
+    background-color: rgb(243, 238, 234);
+    border-left: 1px solid lightgrey;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* regole container message col-dx */
-#container-message{
-    padding: 20px;
-}
-.message{
-    width: auto;
-    padding: 10px;
+.chat-input input{
+    width: 90%;
+    height: 40px;
+    border: none;
     border-radius: 10px;
-    background-color: #fff;
-}
-.message.user{
-    background-color: #d5f9ba;
 }
 
-    
+.chat-input .fa-smile, .fa-microphone{
+    font-size: 25px;
+    color: gray;
+    margin: 0 20px;
+}
+
+.sent-msg-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 30px;
+}
+
+.received-msg-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 30px;
+}
+
+
+.text-msg {
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-end;
+    margin: 10px 0;
+}
+
+.text-msg p{
+    margin-right: 20px;
+}
+
+.sent-color {
+    background-color: rgb(213, 249, 186);
+}
+
+.received-color {
+    background-color: white;
+}

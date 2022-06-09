@@ -7,13 +7,16 @@ nome e immagine di ogni contatto */
 
 
 
-const boolApp = new Vue({
-    el : '#main-container',
-    data : {
+const root = new Vue({
+    el: "#app",
+    data: {
+        activeChat: 0,
+        newMessage: "",
+        contactsFound: "",
         contacts: [
             {
-                name: 'Michele',
-                avatar: 'img/Michele.png',
+                name: 'Alessandro B.',
+                avatar: 'img/Alessandro-B.png',
                 visible: true,
                 messages: [
                     {
@@ -34,8 +37,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Fabio',
-                avatar: 'img/Fabio.png',
+                name: 'Alessandro-L.',
+                avatar: 'img/Alessandro-L.png',
                 visible: true,
                 messages: [
                     {
@@ -56,8 +59,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Samuele',
-                avatar: 'img/Samuele.png',
+                name: 'Claudia',
+                avatar: 'img/Claudia.png',
                 visible: true,
                 messages: [
                     {
@@ -78,8 +81,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Alessandro B.',
-                avatar: 'img/Alessandro B..png',
+                name: 'Davide',
+                avatar: 'img/Davide.png',
                 visible: true,
                 messages: [
                     {
@@ -95,8 +98,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Alessandro L.',
-                avatar: 'img/Alessandro L..png',
+                name: 'Fabio',
+                avatar: 'img/Fabio.png',
                 visible: true,
                 messages: [
                     {
@@ -112,8 +115,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Claudia',
-                avatar: 'img/Claudia.png',
+                name: 'Federico',
+                avatar: 'img/Federico.png',
                 visible: true,
                 messages: [
                     {
@@ -134,8 +137,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Federico',
-                avatar: 'img/Federico.png',
+                name: 'Michele',
+                avatar: 'img/Michele.png',
                 visible: true,
                 messages: [
                     {
@@ -151,8 +154,8 @@ const boolApp = new Vue({
                 ],
             },
             {
-                name: 'Davide',
-                avatar: 'img/Davide.png',
+                name: 'Samuele',
+                avatar: 'img/Samuele.png',
                 visible: true,
                 messages: [
                     {
@@ -173,6 +176,46 @@ const boolApp = new Vue({
                 ],
             }
         ]
-        
+
+    },
+    methods: {
+        activeContact(index) {
+            this.activeChat = index;
+        },
+
+        addMsg() {
+            if (this.newMessage.trim() !== "") {
+                const msg = {
+                    date: '10/01/2020 15:51:00',
+                    message: this.newMessage,
+                    status: 'sent'
+                };
+                this.contacts[this.activeChat].messages.push(msg);
+                this.newMessage = '';
+                setTimeout(this.replyMsg, 1000);
+            }
+        },
+
+        replyMsg(){
+            const msg = {
+                date: '10/01/2020 15:52:00',
+                message: 'ok',
+                status: 'received'
+            };
+            this.contacts[this.activeChat].messages.push(msg);
+        },
+        searchContacts(){
+            filter = this.contactsFound.toUpperCase();
+            for (i = 0; i < this.contacts.length; i++) {
+                if (this.contacts[i].name.toUpperCase().indexOf(filter) > -1) {
+                    this.contacts[i].visible = true;
+                } else {
+                    this.contacts[i].visible = false;
+                }
+              }
+              console.log(filter);
     }
+
+    }
+
 });

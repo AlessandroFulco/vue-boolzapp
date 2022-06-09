@@ -1,133 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- cdn fontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- styleSheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>BoolZapp</title>
+    <title>Boolzapp</title>
 </head>
-<body>
-    <!-- container pagina -->
-    <div id="main-container">
-        <!-- fascia superiore di sfondo -->
-        <div id="top-band"></div>
 
-        <!-- container app -->
-        <div id="container-app">
-            <!-- sezione sinistra -->
-            <section id="col-sx">
-                <!-- header per sez user e chat aperta -->
-                <header id="container-user-chat">
-                    <!-- user -->
-                    <section id="user">
-                        <div class="img-name">
-                            <img src="img/Sofia.png" alt="foto profilo Sofia">
-                            <h4>Sofia</h4>
+<body>
+
+    <div id="background-app">
+        <div id="app">
+            <!-- Contact list -->
+            <aside>
+                <!-- My profile and menu -->
+                <div id="left-contact">
+                    <div class="top-contact">
+                        <figure class="icon-avatar">
+                            <img src="img/Sofia.png" alt="Sofia">
+                            <div class="text-avatar">
+                                <h4>Sofia</h4>
+                            </div>
+                        </figure>
+                        <!-- icon menu -->
+                        <div class="option-icon-contact">
+                            <a href="#"><i class="fas fa-circle-notch"></i></a>
+                            <a href="#"><i class="fas fa-comment-alt"></i></a>
+                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                         </div>
-                        <!-- sez button -->
-                        <div class="button-sez">
-                            <!-- circle -->
-                            <i class="fas fa-circle-notch"></i>
-                            <!-- chat -->
-                            <i class="fas fa-comment-alt"></i>
-                            <!-- menu -->
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </section>
-                </header>
-                <main>
-                    <div id="notification">
-                        <div id="bells">
+                    </div>
+                    <!-- alert -->
+                    <div id="alert-notifications">
+                        <div id="icon-bell">
                             <i class="fas fa-bell-slash"></i>
                         </div>
-                        <div>
-                            <h4>Ricevi notifiche di nuovi messaggi</h4>
+                        <div id="text-alert">
+                            <p>Ricevi notifiche di nuovi messaggi</p>
                             <a href="#">Attiva notifiche desktop</a>
                         </div>
                     </div>
-                    <!-- search bar -->
-                    <div id="search">
-                        <div id="icon-search">
-                            <!-- search -->
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div id="sez-input">
-                            <input type="text">
-                        </div>
+                    <!-- input search contact -->
+                    <div id="search-contact">
+                        <input v-model="contactsFound" @keyup="searchContacts()" type="text" placeholder=" Cerca o inizia nuova chat">
                     </div>
 
-                    <!-- lista chat -->
-                    <div id="chat">
-                        <ul>
-                            <li v-for="(chat, i) in contacts" :key="i" class="chat-content">
-                                <div id="profile">
-                                    <!-- img profile -->
-                                    <img :src="chat.avatar" :alt="chat.name">
-                                </div>
-                                <div id="last_message_time">
-                                    <div>
-                                        <h3>{{chat.name}}</h3>
-                                        <span>Ultimo messaggio inviato</span>
-                                    </div>
-                                    <div id="chat-time">
-                                        12:00
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                    <!-- contact list (da ciclare con vue)-->
+                    <div id="contact-list">
 
-
-
+                       <div v-for="(item, i) in contacts" class="single-contact" @click="activeContact(i)" :class="[i === activeChat ? 'active-chat': '' , item.visible === false ? 'contacts-none' : '']" :key="i">
+                        <figure class="icon-avatar"><img :src="item.avatar" :alt="item.name">
+                            <div class="text-avatar">
+                                <h4>{{item.name}}</h4>
+                            <span class="little-font-gray">Ultimo messaggio inviato</span>
+                            </div>
+                        </figure>
+                            <!-- icon menu -->
+                            <div class="time">
+                                <span class="little-font-gray">12:00</span>
+                            </div>
+                       </div>
+                       
                     </div>
+                </div>
+            </aside>
 
 
-                </main>
-
-            </section>
-
-            <!-- sezione destra -->
-            <section id="col-dx">
-                <header>
-                        <!-- open chat -->
-                    <section id="open-chat">
-                        <div class="img-name">
-                            <img src="img/Michele.png" alt="foto profilo Sofia">
-                            <h4>Sofia</h4>
+            <!-- chat -->
+            <main>
+                <!-- info contact and menu chat -->
+                <div class="top-contact chat-top">
+                    <figure class="icon-avatar"><img :src="contacts[activeChat].avatar" :alt="contacts[activeChat].name">
+                        <div class="text-avatar">
+                            <h4>{{contacts[activeChat].name}}</h4>
+                        
+                        <span class="little-font-gray">Ultimo messaggio inviato</span>
                         </div>
-                        <!-- sez button -->
-                        <div class="button-sez">
-                            <!-- search -->
-                            <i class="fas fa-search"></i>
-                            <!-- attach -->
-                            <i class="fas fa-paperclip"></i>
-                            <!-- menu -->
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </section>
-                </header>
-
-                <main>
-                    <div id="container-message">
-                        <span class="message user">
-                            ciao
-                        </span>
+                    </figure>
+                    <!-- icon menu -->
+                    <div class="option-icon-contact">
+                        <a href="#"><i class="fas fa-search"></i></a>
+                        <a href="#"><i class="fas fa-paperclip"></i></a>
+                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                     </div>
-                </main>
-            </section>
+                </div>
+
+                <!-- chat page -->
+                <div id="chat">
+                    <div v-for="(msg, idx) in contacts[activeChat].messages" :class="msg.status === 'sent' ? 'sent-msg-container' : 'received-msg-container'" :key="idx">
+                        <div class="text-msg" :class="msg.status === 'sent' ? 'sent-color' : 'received-color'">
+                            <p>{{msg.message}}</p>
+                            <span class="little-font-gray">{{msg.date}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- input text box -->
+                <div class="chat-input">
+                    <a href="#"><i class="far fa-smile"></i></a>
+                    <input v-model="newMessage" @keyup.enter="addMsg" type="text" placeholder=" Scrivi un messaggio">
+                    <a href="#"><i class="fas fa-microphone"></i></a>
+                </div>
+            </main>
+
 
         </div>
-
     </div>
 
 
-
-    <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <!-- js -->
     <script src="js/script.js"></script>
 </body>
+
 </html>
